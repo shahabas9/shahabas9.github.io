@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mohamed Shahabas - Data Scientist</title>
+    <style>
+        :root {
+            --primary-color: #375534;
+            --secondary-color: #6b9071;
+            --accent-color: #e74c3c;
+            --light-color: #ecf0f1;
+            --dark-color: #2c3e50;
+            --gray-color: #95a5a6;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f9f9f9;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 100px 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="%23ffffff" fill-opacity="0.1" d="M0,96L48,112C96,128,192,160,288,186.7C384,213,480,235,576,213.3C672,192,768,128,864,128C960,128,1056,192,1152,192C1248,192,1344,128,1392,96L1440,64L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>');
+            background-size: cover;
+            opacity: 0.1;
+        }
+        
+        .header-content {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .profile-header {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+        
+        .profile-pic-container {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            border: 5px solid rgba(255, 255, 255, 0.3);
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            background-color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .profile-pic {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .profile-pic-placeholder {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+            color: white;
+            font-size: 4rem;
+        }
+        
+        header h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+        }
+        
+        header p {
+            font-size: 1.5rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        nav {
+            background-color: var(--primary-color);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+        }
+        
+        nav ul li {
+            padding: 15px 20px;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            position: relative;
+        }
+        
+        nav ul li a:hover {
+            color: var(--secondary-color);
+        }
+        
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--secondary-color);
+            transition: width 0.3s;
+        }
+        
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+        
+        section {
+            padding: 80px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background-color: var(--secondary-color);
+            border-radius: 2px;
+        }
+        
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+        }
+        
+        .about-text {
+            flex: 2;
+        }
+        
+        .about-text h3 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+        }
+        
+        .about-text p {
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+        
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .skill-category {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+        
+        .skill-category:hover {
+            transform: translateY(-5px);
+        }
+        
+        .skill-category h3 {
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--secondary-color);
+        }
+        
+        .skill-list {
+            list-style: none;
+        }
+        
+        .skill-list li {
+            margin-bottom: 10px;
+            padding-left: 20px;
+            position: relative;
+        }
+        
+        .skill-list li:before {
+            content: "▸";
+            position: absolute;
+            left: 0;
+            color: var(--secondary-color);
+        }
+        
+        .experience-item {
+            background-color: white;
+            padding: 30px;
+            margin-bottom: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            border-left: 5px solid var(--secondary-color);
+            transition: transform 0.3s;
+        }
+        
+        .experience-item:hover {
+            transform: translateX(5px);
+        }
+        
+        .experience-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .experience-title {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+        }
+        
+        .experience-date {
+            color: var(--gray-color);
+            font-weight: 500;
+            background-color: #f5f5f5;
+            padding: 5px 10px;
+            border-radius: 20px;
+        }
+        
+        .experience-company {
+            font-size: 1.2rem;
+            color: var(--secondary-color);
+            margin-bottom: 15px;
+        }
+        
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+        }
+        
+        .project-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .project-img {
+            height: 200px;
+            background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3rem;
+        }
+        
+        .project-content {
+            padding: 20px;
+        }
+        
+        .project-title {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            color: var(--primary-color);
+        }
+        
+        .project-links {
+            margin-top: 15px;
+        }
+        
+        .project-links a {
+            display: inline-block;
+            padding: 8px 15px;
+            background-color: var(--secondary-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-right: 10px;
+            font-size: 0.9rem;
+            transition: background-color 0.3s;
+        }
+        
+        .project-links a:hover {
+            background-color: var(--primary-color);
+        }
+        
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+        
+        .contact-item {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: transform 0.3s;
+        }
+        
+        .contact-item:hover {
+            transform: translateY(-5px);
+        }
+        
+        .contact-item i {
+            font-size: 2.5rem;
+            color: var(--secondary-color);
+            margin-bottom: 15px;
+        }
+        
+        .contact-item h3 {
+            margin-bottom: 10px;
+            color: var(--primary-color);
+        }
+        
+        footer {
+            background-color: var(--primary-color);
+            color: white;
+            text-align: center;
+            padding: 30px 0;
+        }
+        
+        @media (max-width: 768px) {
+            .about-content {
+                flex-direction: column;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            header {
+                padding: 60px 0;
+            }
+            
+            header h1 {
+                font-size: 2.5rem;
+            }
+            
+            .profile-pic-container {
+                width: 150px;
+                height: 150px;
+            }
+            
+            section {
+                padding: 50px 0;
+            }
+            
+            .experience-header {
+                flex-direction: column;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="profile-header">
+                    <div class="profile-pic-container">
+                        
+                        <!-- Replace with your actual profile picture -->
+                        <div class="profile-pic-placeholder">
+                            <img src="/Users/shahabas/Downloads/shahabas.jpeg" alt="Mohamed Shahabas" class="profile-pic">
+                            <!-- <i class="fas fa-user"></i> -->
+                        </div>
+                        <!-- If you have a profile picture, use this instead: -->
+                        
+                    </div>
+                    <div>
+                        <h1>Mohamed Shahabas</h1>
+                        <p>Data Scientist & AI Engineer</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <nav>
+        <ul>
+            <li><a href="#about">About</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+    
+    <section id="about">
+        <div class="container">
+            <h2 class="section-title">About Me</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>Data Scientist and Engineer</h3>
+                    <p>With over 2 years of specialized experience in Computer Vision, bolstered by a strong software development foundation. I am now pioneering the development of Generative AI applications. My expertise lies in building robust, end-to-end machine learning systems.</p>
+                    <p>Currently, I am developing a Generative AI platform—architecting data pipelines, fine-tuning and integrating state-of-the-art models from Hugging Face, and designing high-performance storage solutions with PostgreSQL and specialized vector databases. My passion is bridging the gap between advanced AI research and production–ready, user-centric products.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="skills">
+        <div class="container">
+            <h2 class="section-title">Skills</h2>
+            <div class="skills-container">
+                <div class="skill-category">
+                    <h3>Machine Learning & AI</h3>
+                    <ul class="skill-list">
+                        <li>Computer Vision</li>
+                        <li>Generative AI</li>
+                        <li>Deep Learning</li>
+                        <li>Natural Language Processing</li>
+                        <li>Model Fine-tuning</li>
+                        <li>Hugging Face Transformers</li>
+                    </ul>
+                </div>
+                <div class="skill-category">
+                    <h3>Programming & Tools</h3>
+                    <ul class="skill-list">
+                        <li>Python</li>
+                        <li>TensorFlow & PyTorch</li>
+                        <li>OpenCV</li>
+                        <li>PostgreSQL</li>
+                        <li>Vector Databases</li>
+                        <li>Docker</li>
+                    </ul>
+                </div>
+                <div class="skill-category">
+                    <h3>Data Engineering</h3>
+                    <ul class="skill-list">
+                        <li>Data Pipeline Architecture</li>
+                        <li>ETL Processes</li>
+                        <li>Database Design</li>
+                        <li>API Development</li>
+                        <li>Cloud Platforms</li>
+                        <li>MLOps</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="experience">
+        <div class="container">
+            <h2 class="section-title">Experience</h2>
+            <div class="experience-item">
+                <div class="experience-header">
+                    <h3 class="experience-title">Data Scientist</h3>
+                    <span class="experience-date">Sept 2025 - Present</span>
+                </div>
+                <p class="experience-company">2cloud, Wayanad</p>
+                <p>Pioneering the development of Generative AI applications and building robust, end-to-end machine learning systems. Currently developing a Generative AI platform with data pipelines, model fine-tuning, and high-performance storage solutions.</p>
+            </div>
+            <div class="experience-item">
+                <div class="experience-header">
+                    <h3 class="experience-title">Software Developer</h3>
+                    <span class="experience-date">May 2024 - Jan 2025</span>
+                </div>
+                <p class="experience-company">Mezab Air Conditioning, Doha</p>
+                <p>Developed software solutions for air conditioning systems with a focus on efficiency and user experience.</p>
+            </div>
+            <div class="experience-item">
+                <div class="experience-header">
+                    <h3 class="experience-title">Data Science Engineer</h3>
+                    <span class="experience-date">June 2022 - Feb 2024</span>
+                </div>
+                <p class="experience-company">Jidoka Technologies, Chennai</p>
+                <p>Specialized in Computer Vision applications, building and deploying machine learning models for various industrial use cases.</p>
+            </div>
+        </div>
+    </section>
+    
+    <section id="projects">
+        <div class="container">
+            <h2 class="section-title">Projects</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-img">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Generative AI Platform</h3>
+                        <p>Developing a comprehensive platform for Generative AI applications with data pipelines, model integration, and high-performance storage.</p>
+                        <div class="project-links">
+                            <a href="#">View Details</a>
+                            <a href="https://github.com/shahabas9">GitHub</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-img">
+                        <i class="fas fa-eye"></i>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Computer Vision Solutions</h3>
+                        <p>Various computer vision projects including object detection, image classification, and video analytics for industrial applications.</p>
+                        <div class="project-links">
+                            <a href="#">View Details</a>
+                            <a href="https://github.com/shahabas9">GitHub</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-img">
+                        <i class="fas fa-database"></i>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Data Pipeline Architecture</h3>
+                        <p>Designed and implemented scalable data pipelines for machine learning workflows with PostgreSQL and vector databases.</p>
+                        <div class="project-links">
+                            <a href="#">View Details</a>
+                            <a href="https://github.com/shahabas9">GitHub</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="contact">
+        <div class="container">
+            <h2 class="section-title">Contact</h2>
+            <div class="contact-info">
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <h3>Email</h3>
+                    <p>mohdshahabasm@gmail.com</p>
+                </div>
+                <div class="contact-item">
+                    <i class="fab fa-linkedin"></i>
+                    <h3>LinkedIn</h3>
+                    <p>linkedin.com/in/mohamed-shahabas-929b04151</p>
+                </div>
+                <div class="contact-item">
+                    <i class="fab fa-github"></i>
+                    <h3>GitHub</h3>
+                    <p>github.com/shahabas9</p>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <h3>Location</h3>
+                    <p>India</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Mohamed Shahabas. All Rights Reserved.</p>
+        </div>
+    </footer>
+    
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('nav a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetSection = document.querySelector(targetId);
+                
+                window.scrollTo({
+                    top: targetSection.offsetTop - 60,
+                    behavior: 'smooth'
+                });
+            });
+        });
+        
+        // Add active class to current section in navigation
+        window.addEventListener('scroll', function() {
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('nav a');
+            
+            let currentSection = '';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                
+                if (pageYOffset >= sectionTop - 100) {
+                    currentSection = section.getAttribute('id');
+                }
+            });
+            
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${currentSection}`) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
